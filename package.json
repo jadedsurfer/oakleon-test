@@ -1,0 +1,32 @@
+{
+  "name": "oakleon-test",
+  "version": "0.0.1",
+  "description": "Generate a dynamic form from a json input",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5",
+    "react": "^0.10",
+    "gulp": "*",
+    "browserify": "*",
+    "reactify": "*",
+    "vinyl-source-stream": "*"
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tbashor/oakleon-test.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Todd Bashor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tbashor/oakleon-test/issues"
+  }
+}
