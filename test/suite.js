@@ -1,11 +1,6 @@
 describe('oaklen form', function(){
 
 
-
-  xit('generates a field for each field object in the field array', function(){
-    expect(true).toEqual(true);
-  });
-
   xit('generates a label with the field', function(){
     expect(true).toEqual(true);
   });

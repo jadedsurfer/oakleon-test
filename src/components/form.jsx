@@ -16,10 +16,10 @@ var Form = React.createClass({
   render: function() {
     return (
       <div>
-        <h3>Oakleon Generated Form</h3>
+        <h1>Oakleon Generated Form</h1>
         <form onSubmit={this.handleSubmit}>
           <input name="id" ref="id" type="hidden" value={this.props.config.id}/>
-          <FieldList />
+          <FieldList ref="fieldList" fields={this.props.config.fields} />
           <input ref="submit" type="submit"></input>
         </form>
       </div>
