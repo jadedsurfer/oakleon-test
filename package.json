@@ -6,16 +6,30 @@
   "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.4.5",
-    "react": "^0.10",
+    "react": "^0.10"
+  },
+  "devDependencies": {
     "gulp": "*",
     "browserify": "*",
     "reactify": "*",
-    "vinyl-source-stream": "*"
+    "vinyl-source-stream": "*",
+    "react-tools": "^0.11.0",
+    "jest": "^0.1.37",
+    "jest-cli": "^0.1.17",
+    "gulp-run": "^1.6.2"
   },
-  "devDependencies": {
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react"
+    ],
+    "testFileExtensions": [
+      "js",
+      "jsx"
+    ]
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
