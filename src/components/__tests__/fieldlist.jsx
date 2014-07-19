@@ -64,15 +64,22 @@ describe('Form', function() {
     expect(field2.value).toBe('Bashor');
   });
 
-  xit('generates a submit button', function(){
-//    var Data = {
-//      "id":"123",
-//      "fields":[
-//      ]
-//    };
-//    var component = TestUtils.renderIntoDocument(<Form config={Data} />);
-//    var submit = component.refs.submit.getDOMNode();
-//    expect(submit).toBeDefined();
-//    expect(submit.type).toBe('submit');
+  it('generates a label with the field', function(){
+    var Data = {
+      "id":"123",
+      "fields":[
+        {"firstname":"Todd", "required":true},
+        {"lastname":"Bashor"}
+      ]
+    };
+    var component = TestUtils.renderIntoDocument(<FieldList fields={Data.fields} />);
+
+    var field1 = component.refs.firstname.refs.firstnameLabel.getDOMNode();
+    expect(field1).toBeDefined();
+    expect(field1.textContent).toBe('firstname');
+
+    var field2 = component.refs.lastname.refs.lastnameLabel.getDOMNode();
+    expect(field2).toBeDefined();
+    expect(field2.textContent).toBe('lastname');
   });
 });

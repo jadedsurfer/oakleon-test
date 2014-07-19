@@ -1,10 +1,5 @@
 describe('oaklen form', function(){
 
-
-  xit('generates a label with the field', function(){
-    expect(true).toEqual(true);
-  });
-
   xit('generates a textbox for a field with a string value', function(){
     expect(true).toEqual(true);
   });
