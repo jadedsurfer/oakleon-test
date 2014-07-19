@@ -17,7 +17,7 @@ var Form = React.createClass({
     return (
       <div>
         <h1>Oakleon Generated Form</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="form-horizontal" role="form">
           <input name="id" ref="id" type="hidden" value={this.props.config.id}/>
           <FieldList ref="fieldList" fields={this.props.config.fields} />
           <input ref="submit" type="submit"></input>

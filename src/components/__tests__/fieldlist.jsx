@@ -53,11 +53,12 @@ describe('Form', function() {
       ]
     };
     var component = TestUtils.renderIntoDocument(<FieldList fields={Data.fields} />);
-    var field1 = component.refs.firstname.getDOMNode();
+    var field1 = component.refs.firstname.refs.firstnameInput.getDOMNode();
     expect(field1).toBeDefined();
     expect(field1.name).toBe('firstname');
     expect(field1.value).toBe('Todd');
-    var field2 = component.refs.lastname.getDOMNode();
+
+    var field2 = component.refs.lastname.refs.lastnameInput.getDOMNode();
     expect(field2).toBeDefined();
     expect(field2.name).toBe('lastname');
     expect(field2.value).toBe('Bashor');

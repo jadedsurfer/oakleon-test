@@ -7,8 +7,13 @@ var FieldList = React.createClass({
       fields: []
     };
   },
+  componentDidMount: function(){
+    this.setState({
+      fields: this.props.fields
+    });
+  },
   render: function() {
-    var fieldData = this.props.fields;
+    var fieldData = this.state.fields;
     var fieldsToRender = fieldData.map(function(field){
       var fieldName = '';
       var fieldValue = null;
@@ -19,7 +24,7 @@ var FieldList = React.createClass({
         }
       }
       return (
-        <Field ref={fieldName} name={fieldName} defaultValue={fieldValue}/>
+        <Field ref={fieldName} name={fieldName} label={fieldName} defaultValue={fieldValue}/>
       );
     });
 

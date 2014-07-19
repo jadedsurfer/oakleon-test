@@ -3,16 +3,41 @@ var React = require('react/addons');
 var Field = React.createClass({
   getInitialState: function() {
     return {
-      value: this.props.defaultValue
+//      value: this.props.defaultValue,
+      type: 'text',
+      name: '',
+      ref: '',
+      label: '',
+      value: null
     };
+  },
+  componentDidMount: function(){
+    this.setState({
+      type: this.props.type,
+      name: this.props.name,
+      ref: this.props.ref,
+      label: this.props.label,
+      value: this.props.defaultValue
+    });
   },
   handleChange: function(event){
     this.setState({value: event.target.value});
   },
   render: function() {
     var value = this.state.value;
+    var name = this.state.name;
+    var ref = this.state.ref;
+    var label = this.state.label;
+    var type = this.state.type;
     return (
-      <input name={this.props.name} type={this.props.type} onChange={this.handleChange} value={value}/>
+      <div className="form-group" ref={ref+'Group'}>
+        <label htmlFor={name} className="col-sm-2 control-label" ref={ref+'Label'}>
+          {label}
+        </label>
+        <div className="col-sm-10">
+          <input ref={ref+'Input'} name={name} type={type} value={value} onChange={this.handleChange} />
+        </div>
+      </div>
       );
   }
 });
