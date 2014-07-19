@@ -22,7 +22,11 @@ gulp.task('test', function(){
 gulp.task('dist', function(){
   return browserify({entries: './src/index.js'})
     .transform('reactify')
-    .bundle({ debug: true })
+    .require('react')
+    .bundle({
+      debug: true,
+      insertGlobals: true
+    })
     .pipe(source('deps.min.js'))
     .pipe(gulp.dest('dist'));
 });
@@ -31,7 +35,7 @@ gulp.task('watch', function(){
   var watcher = gulp.watch('./src/**', ['test']);
   watcher.on('change', function(event){
     console.log('File '+event.path+' was '+event.type+', running tasks...');
-  })
+  });
 });
 
 

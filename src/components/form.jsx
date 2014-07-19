@@ -3,7 +3,9 @@ var React = require('react/addons');
 var FieldList = require('./fieldlist.jsx');
 var Form = React.createClass({
   getInitialState: function() {
-    return {};
+    return {
+      config: {}
+    };
   },
   handleSubmit: function(e) {
     e.preventDefault();
@@ -16,9 +18,9 @@ var Form = React.createClass({
       <div>
         <h3>Oakleon Generated Form</h3>
         <form onSubmit={this.handleSubmit}>
-          <input name="id" type="hidden" value={this.props.config.id}/>
+          <input name="id" ref="id" type="hidden" value={this.props.config.id}/>
           <FieldList />
-          <input type="submit"></input>
+          <input ref="submit" type="submit"></input>
         </form>
       </div>
       );
