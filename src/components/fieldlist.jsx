@@ -32,7 +32,7 @@ var FieldList = React.createClass({
 
       }
       return (
-        <Field ref={fieldName} name={fieldName} label={fieldName} defaultValue={fieldValue}/>
+        <Field ref={fieldName} name={fieldName} label={fieldName} defaultValue={fieldValue} required={required}/>
       );
     });
 

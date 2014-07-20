@@ -63,10 +63,11 @@ describe('Form', function() {
   it('sets the field as required if it has a required property', function(){
     var fieldName = 'firstname';
     var fieldValue = 'Todd';
-    var component = TestUtils.renderIntoDocument(<Field name={fieldName} label={fieldName} defaultValue={fieldValue}/>);
+    var required = true;
+    var component = TestUtils.renderIntoDocument(<Field name={fieldName} label={fieldName} defaultValue={fieldValue} required={required}/>);
 
     var node = component.refs.firstnameInput.getDOMNode();
-    expect(node.type).toBe('text');
+    expect(node.required).toBe('required');
   });
 
 });
