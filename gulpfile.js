@@ -20,7 +20,7 @@ gulp.task('test', function(){
 });
 
 gulp.task('dist', function(){
-  return browserify({entries: './src/index.js'})
+  return browserify({entries: './src/index.jsx'})
     .transform('reactify')
     .require('react')
     .bundle({

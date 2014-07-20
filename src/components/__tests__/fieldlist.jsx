@@ -7,52 +7,46 @@ describe('Form', function() {
   var React = require('react/addons');
   var FieldList = require('../fieldlist.jsx');
   var TestUtils = React.addons.TestUtils;
-  var Data = {
-    "id":"00000314159265359",
-    "fields":[
-      {"firstname":"Tim", "required":true},
-      {"lastname":"Cash", "required":true},
-      {"email":"tim@oakleon.com", "required":true},
-      {"Address":"12345 fake street"},
-      {"city": "San Diego"},
-      {"state": "CA"},
-      {"zipcode": "92119"},
-      {"date_created":1392164977880},
-      {"tag":"technician"},
-      {"tag":"user"},
-      {"comment":"This is the first comment about Tim"},
-      {"comment":"Here is the second comment about Tim"},
-      {"comment":"And a third comment about Tim"},
-      {"roles":{
-        "sales":false,
-        "admin":false,
-        "tech":true,
-        "manager":true
-      }}
-    ]
-  };
 
   it('renders', function() {
-    var Data = {
+    var config = {
       "id":"123",
       "fields":[
-        {"firstname":"Todd", "required":true}
+        {
+          "_name": "firstname",
+          "_label": "firstname",
+          "_value": "Todd",
+          "_type": "text",
+          "_required": true
+        }
       ]
     };
-    var component = TestUtils.renderIntoDocument(<FieldList fields={Data.fields} />);
+    var component = TestUtils.renderIntoDocument(<FieldList fields={config.fields} />);
 
     expect(component.getDOMNode()).toBeDefined();
   });
 
-  it('generates a field for each field object in the field array', function(){
-    var Data = {
+  it('generates a field for each fields object in the field array', function(){
+    var config = {
       "id":"123",
       "fields":[
-        {"firstname":"Todd", "required":true},
-        {"lastname":"Bashor"}
+        {
+          "_name": "firstname",
+          "_label": "firstname",
+          "_value": "Todd",
+          "_type": "text",
+          "_required": true
+        },
+        {
+          "_name": "lastname",
+          "_label": "lastname",
+          "_value": "Bashor",
+          "_type": "text",
+          "_required": false
+        }
       ]
     };
-    var component = TestUtils.renderIntoDocument(<FieldList fields={Data.fields} />);
+    var component = TestUtils.renderIntoDocument(<FieldList fields={config.fields} />);
     var field1 = component.refs.firstname;
     expect(field1).toBeDefined();
 

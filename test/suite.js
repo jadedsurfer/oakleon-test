@@ -1,10 +1,6 @@
 describe('oaklen form', function(){
 
 
-  xit('converts date in human readable date', function(){
-    expect(true).toEqual(true);
-  });
-
   xit('generates a section for fields with an object value', function(){
     expect(true).toEqual(true);
   });
