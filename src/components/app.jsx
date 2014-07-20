@@ -32,6 +32,7 @@ var App = {
     var fieldValue = '';
     var fieldType = 'text';
     var fieldRequired = false;
+    var fieldChecked = false;
 
     // Parse through the object to extract the needed properties
     Object.keys(field).forEach(
@@ -40,20 +41,26 @@ var App = {
         if (key !== 'required') {
           fieldName = key;
           fieldType = getType(field[key]);
-          if (fieldType === 'date') {
-            fieldValue = formatTime(field[key]);
-            /**
-            /* Using a date type field loses fidelity with the sample data given.
-            /*
-            /* More advanced logic could determine when to use a date type field
-            /* and when to use a regular text field.
-            /*
-            /* Also in this case the field should probably be readonly.
-            /*
-            **/
-            fieldType = 'text';
-          } else {
-            fieldValue = field[key];
+          switch (fieldType){
+            case 'date':
+              fieldValue = formatTime(field[key]);
+              /**
+               /* Using a date type field loses fidelity with the sample data given.
+               /*
+               /* More advanced logic could determine when to use a date type field
+               /* and when to use a regular text field.
+               /*
+               /* Also in this case the field should probably be readonly.
+               /*
+               **/
+              fieldType = 'text';
+              break;
+            case 'boolean':
+              fieldValue = null;
+              fieldChecked = field[key];
+              break;
+            default:
+              fieldValue = field[key];
           }
         }
 
@@ -70,6 +77,7 @@ var App = {
     field._value = fieldValue;
     field._type = fieldType;
     field._required = fieldRequired;
+    field._checked = fieldChecked;
 
     return field;
   },

@@ -61,7 +61,7 @@ describe('App', function() {
     var cleanConfig = App.prepareConfig(config);
     var field = cleanConfig.fields[0];
 
-    expect(field._value).toBeTruthy();
+    expect(field._checked).toBeTruthy();
     expect(field._type).toBe('boolean');
   });
 });

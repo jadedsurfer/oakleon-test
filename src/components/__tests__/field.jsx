@@ -69,7 +69,7 @@ describe('Form', function() {
     var config = {
       "_name": "admin",
       "_label": "admin",
-      "_value": true,
+      "_checked": true,
       "_type": "boolean",
       "_required": false
     };

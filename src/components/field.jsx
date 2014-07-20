@@ -11,7 +11,8 @@ var Field = React.createClass({
         ref: 'field',
         label: '',
         value: null,
-        required: false
+        required: false,
+        checked: false
       }
     };
   },
@@ -23,12 +24,17 @@ var Field = React.createClass({
       ref: field._name,
       label: field._label,
       value: field._value,
-      required: field._required
+      required: field._required,
+      checked: field._checked
     });
   },
 
   handleChange: function(event){
-    this.setState({value: event.target.value});
+    if (event.target.type === 'checkbox') {
+      this.setState({checked: event.target.checked});
+    } else {
+      this.setState({value: event.target.value});
+    }
   },
   getConfig: function(){
     return {
@@ -37,7 +43,8 @@ var Field = React.createClass({
       ref: this.state.ref,
       label: this.state.label,
       type: this.state.type,
-      required: this.state.required
+      required: this.state.required,
+      checked: this.state.checked
     };
   },
   render: function() {
@@ -79,9 +86,9 @@ var Field = React.createClass({
   },
   renderCheckbox: function(config){
     if (config.required) {
-      return <input ref={config.ref+'Input'} name={config.name} type="checkbox" value={config.value} onChange={this.handleChange} required="required"/>
+      return <input ref={config.ref+'Input'} name={config.name} type="checkbox" checked={config.checked} onChange={this.handleChange} required="required"/>
     } else {
-      return <input ref={config.ref+'Input'} name={config.name} type="checkbox" value={config.value} onChange={this.handleChange} />
+      return <input ref={config.ref+'Input'} name={config.name} type="checkbox" checked={config.checked} onChange={this.handleChange} />
     }
   }
 

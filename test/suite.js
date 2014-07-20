@@ -5,9 +5,6 @@ describe('oaklen form', function(){
     expect(true).toEqual(true);
   });
 
-  xit('generates a checkbox for a field with a boolean value', function(){
-    expect(true).toEqual(true);
-  });
 
   xit('generates a textarea for duplicate field keys', function(){
     expect(true).toEqual(true);
