@@ -64,4 +64,29 @@ describe('App', function() {
     expect(field._checked).toBeTruthy();
     expect(field._type).toBe('boolean');
   });
+
+  // may not need this one
+  xit('flattens fields with object values', function(){
+    var config = {
+      "id":"123",
+      "fields":[
+        {"roles":{
+          "sales":true,
+          "admin":false
+        }}
+      ]
+    };
+    var cleanConfig = App.prepareConfig(config);
+    var field1 = cleanConfig.fields[0];
+    var field2 = cleanConfig.fields[1];
+
+    expect(field1._name).toBe('roles["sales"]');
+    expect(field1._checked).toBeTruthy();
+    expect(field1._type).toBe('boolean');
+
+    expect(field2._name).toBe('roles["admin"]');
+    expect(field2._checked).toBeFalsy();
+    expect(field2._type).toBe('boolean');
+  });
+
 });

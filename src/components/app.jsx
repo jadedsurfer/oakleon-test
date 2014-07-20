@@ -25,7 +25,7 @@ var App = {
 
     return cleanConfig;
   },
-  prepareField: function(field){
+  prepareField: function(field, parent){
     //TODO:
     //dedup
     var fieldName = '';
@@ -59,6 +59,9 @@ var App = {
               fieldValue = null;
               fieldChecked = field[key];
               break;
+//            case 'object':
+//              return this.prepareField(field, key);
+//              break;
             default:
               fieldValue = field[key];
           }

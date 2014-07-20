@@ -79,4 +79,21 @@ describe('Form', function() {
     expect(node.type).toBe('checkbox');
   });
 
+  it('generates a multiple selection widget for fields with an object type', function(){
+    var config = {
+      "_name": "roles",
+      "_label": "roles",
+      "_value": {
+        "sales":true,
+        "admin":false
+      },
+      "_type": "select",
+      "_required": false
+    };
+    var component = TestUtils.renderIntoDocument(<Field config={config}/>);
+
+    var node = component.refs.rolesInput.getDOMNode();
+    expect(node.type).toBe('select');
+  });
+
 });
