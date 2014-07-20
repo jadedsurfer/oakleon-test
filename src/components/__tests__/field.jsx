@@ -65,18 +65,4 @@ describe('Form', function() {
     expect(node.required).toBe('required');
   });
 
-  xit('converts date in human readable date', function(){
-    var config = {
-      "_name": "date_created",
-      "_label": "date_created",
-      "_value": 1392164977880,
-      "_type": "number",
-      "_required": false
-    };
-    var component = TestUtils.renderIntoDocument(<Field config={config}/>);
-
-    var node = component.refs.date_createdInput.getDOMNode();
-    expect(node.value).toBe('02/11/2014 16:29:38');
-  });
-
 });
