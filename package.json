@@ -6,7 +6,11 @@
   "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.4.5",
-    "react": "^0.10"
+    "react": "^0.10",
+    "react-chosen": "^0.3.5",
+    "drmonty-chosen": "^1.1.0",
+    "react-bootstrap": "^0.11.0",
+    "react-grid": "git+https://github.com/prometheusresearch/react-grid.git"
   },
   "devDependencies": {
     "gulp": "*",

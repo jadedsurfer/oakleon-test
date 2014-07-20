@@ -65,28 +65,37 @@ describe('App', function() {
     expect(field._type).toBe('boolean');
   });
 
-  // may not need this one
-  xit('flattens fields with object values', function(){
+  it('converts field with object value into an options array', function(){
     var config = {
       "id":"123",
       "fields":[
         {"roles":{
           "sales":true,
-          "admin":false
+          "admin":false,
+          "qa":true
         }}
       ]
     };
     var cleanConfig = App.prepareConfig(config);
-    var field1 = cleanConfig.fields[0];
-    var field2 = cleanConfig.fields[1];
+    var field = cleanConfig.fields[0];
+    var value1 = field._value[0];
+    var value2 = field._value[1];
+    var option1 = field._options[0];
+    var option2 = field._options[1];
+    var option3 = field._options[2];
 
-    expect(field1._name).toBe('roles["sales"]');
-    expect(field1._checked).toBeTruthy();
-    expect(field1._type).toBe('boolean');
+    expect(field._type).toBe('select');
 
-    expect(field2._name).toBe('roles["admin"]');
-    expect(field2._checked).toBeFalsy();
-    expect(field2._type).toBe('boolean');
+    expect(field._options.length).toBe(3);
+    expect(option1).toBe('sales');
+    expect(option2).toBe('admin');
+    expect(option3).toBe('qa');
+
+
+    expect(field._value.length).toBe(2);
+    expect(value1).toBe('sales');
+    expect(value2).toBe('qa');
+
   });
 
 });

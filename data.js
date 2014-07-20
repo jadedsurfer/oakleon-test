@@ -11,6 +11,7 @@ module.exports = {
     {"date_created":1392164977880},
     {"tag":"technician"},
     {"tag":"user"},
+    {"checkboxtest":true},
     {"comment":"This is the first comment about Tim"},
     {"comment":"Here is the second comment about Tim"},
     {"comment":"And a third comment about Tim"},

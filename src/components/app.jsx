@@ -25,7 +25,7 @@ var App = {
 
     return cleanConfig;
   },
-  prepareField: function(field, parent){
+  prepareField: function(field){
     //TODO:
     //dedup
     var fieldName = '';
@@ -33,16 +33,36 @@ var App = {
     var fieldType = 'text';
     var fieldRequired = false;
     var fieldChecked = false;
+    var fieldOptions = [];
 
     // Parse through the object to extract the needed properties
     Object.keys(field).forEach(
       function (key) {
+
+        // Used by select type fields to get an array of selected options
+        function prepareSelectValues(options){
+          var values = [];
+          Object.keys(options).forEach(
+            function(key){
+              if (options[key]){
+                values.push(key);
+              }
+            }
+          );
+          return values;
+        }
+
         // Key order is not always guaranteed so check what you got
         if (key !== 'required') {
+
+          // It is name for the field, so use it
           fieldName = key;
+
+          // Handle different data types
           fieldType = getType(field[key]);
           switch (fieldType){
             case 'date':
+              // Convert the unix timestamp into something readable
               fieldValue = formatTime(field[key]);
               /**
                /* Using a date type field loses fidelity with the sample data given.
@@ -56,12 +76,20 @@ var App = {
               fieldType = 'text';
               break;
             case 'boolean':
+              // Use checked instead of value
               fieldValue = null;
               fieldChecked = field[key];
               break;
-//            case 'object':
-//              return this.prepareField(field, key);
-//              break;
+            case 'object':
+              // Assumes that the properties of the object all have boolean values so will use a select
+              // TODO: enhance this to handle cases where the object contains fields with non-boolean values
+              fieldType = 'select';
+              // Separate the object into an array of options and an array of selected options
+              // TODO: Enhance option processing to allow labels and values to be different
+              fieldOptions = Object.keys(field[key]);
+              fieldValue = prepareSelectValues(field[key]);
+//              fieldValue = field[key];
+              break;
             default:
               fieldValue = field[key];
           }
@@ -81,6 +109,7 @@ var App = {
     field._type = fieldType;
     field._required = fieldRequired;
     field._checked = fieldChecked;
+    field._options = fieldOptions;
 
     return field;
   },

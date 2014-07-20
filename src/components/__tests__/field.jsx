@@ -31,7 +31,7 @@ describe('Form', function() {
     };
     var component = TestUtils.renderIntoDocument(<Field config={config}/>);
 
-    var node = component.refs.firstnameLabel.getDOMNode();
+    var node = TestUtils.findRenderedDOMComponentWithTag(component, 'label').getDOMNode();
     expect(node).toBeDefined();
     expect(node.textContent).toBe('firstname');
 
@@ -47,7 +47,7 @@ describe('Form', function() {
     };
     var component = TestUtils.renderIntoDocument(<Field config={config}/>);
 
-    var node = component.refs.firstnameInput.getDOMNode();
+    var node = TestUtils.findRenderedDOMComponentWithTag(component, 'input').getDOMNode();
     expect(node.type).toBe('text');
   });
 
@@ -61,8 +61,8 @@ describe('Form', function() {
     };
     var component = TestUtils.renderIntoDocument(<Field config={config}/>);
 
-    var node = component.refs.firstnameInput.getDOMNode();
-    expect(node.required).toBe('required');
+    var node = TestUtils.findRenderedDOMComponentWithTag(component, 'input').getDOMNode();
+    expect(node.required).toBeTruthy();
   });
 
   it('generates a checkbox field for booleans', function(){
@@ -75,7 +75,7 @@ describe('Form', function() {
     };
     var component = TestUtils.renderIntoDocument(<Field config={config}/>);
 
-    var node = component.refs.adminInput.getDOMNode();
+    var node = TestUtils.findRenderedDOMComponentWithTag(component, 'input').getDOMNode();
     expect(node.type).toBe('checkbox');
   });
 
@@ -83,17 +83,35 @@ describe('Form', function() {
     var config = {
       "_name": "roles",
       "_label": "roles",
-      "_value": {
-        "sales":true,
-        "admin":false
-      },
+      "_value": ["sales", "admin"],
+      "_options": ["sales", "admin"],
       "_type": "select",
       "_required": false
     };
     var component = TestUtils.renderIntoDocument(<Field config={config}/>);
+    expect(component.state.value).toEqual(['sales', "admin"]);
 
-    var node = component.refs.rolesInput.getDOMNode();
-    expect(node.type).toBe('select');
+    var node = TestUtils.findRenderedDOMComponentWithTag(component, 'select').getDOMNode();
+    expect(node.type).toBe('select-multiple');
+
+  });
+
+  // TODO: Get this to work; Can't figure out how to test it properly since I had to hack the component
+  xit('saves state correctly for multiple selections', function(){
+    var config = {
+      "_name": "roles",
+      "_label": "roles",
+      "_value": ["sales", "admin"],
+      "_options": ["sales", "admin", "qa"],
+      "_type": "select",
+      "_required": false
+    };
+    var component = TestUtils.renderIntoDocument(<Field config={config}/>);
+    var node = TestUtils.findRenderedDOMComponentWithTag(component, 'select').getDOMNode();
+
+    TestUtils.Simulate.change(node, {value: ["sales", "qa"]});
+    expect(component.state.value).toEqual(['sales', "qa"]);
+
   });
 
 });

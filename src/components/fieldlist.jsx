@@ -20,9 +20,7 @@ var FieldList = React.createClass({
     if (fields.length > 0 && fields !== 'undefined') {
 
       var fieldsToRender = fields.map(function(field){
-        return (
-          <Field config={field} ref={field._name} />
-          );
+        return <Field config={field} ref={field._name} />;
       });
     }
 

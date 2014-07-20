@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
-var jasmine = require('gulp-jasmine');
 var run = require('gulp-run');
 
 //gulp.task('test', function(){

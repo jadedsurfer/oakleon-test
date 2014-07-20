@@ -2,6 +2,8 @@
 
 /** @jsx React.DOM */
 var React = require('react/addons');
+var Input = require('react-bootstrap').Input;
+var Grid = require('react-grid');
 var Field = React.createClass({
   getInitialState: function() {
     return {
@@ -12,7 +14,8 @@ var Field = React.createClass({
         label: '',
         value: null,
         required: false,
-        checked: false
+        checked: false,
+        options: []
       }
     };
   },
@@ -25,15 +28,31 @@ var Field = React.createClass({
       label: field._label,
       value: field._value,
       required: field._required,
-      checked: field._checked
+      checked: field._checked,
+      options: field._options || []
     });
   },
 
   handleChange: function(event){
-    if (event.target.type === 'checkbox') {
-      this.setState({checked: event.target.checked});
-    } else {
-      this.setState({value: event.target.value});
+    switch (event.target.type) {
+      case 'checkbox':
+        this.setState({checked: event.target.checked});
+        break;
+      case 'option':
+        console.log('option changed');
+        console.log(event.target);
+        break;
+      case 'select-multiple':
+        // Had to hack this because the getValue function from react-bootstrap didn't seem to work
+        var newValue = [];
+        var selectedOptions = this.refs.rolesInput.getDOMNode().lastChild.lastChild.selectedOptions;
+        for (var i = 0; i < selectedOptions.length; i++) {
+          newValue[i] = selectedOptions[i].value;
+        }
+        this.setState({value: newValue});
+        break;
+      default:
+        this.setState({value: event.target.value});
     }
   },
   getConfig: function(){
@@ -44,22 +63,13 @@ var Field = React.createClass({
       label: this.state.label,
       type: this.state.type,
       required: this.state.required,
-      checked: this.state.checked
+      checked: this.state.checked,
+      options: this.state.options
     };
   },
   render: function() {
     var config = this.getConfig();
-
-    return (
-      <div className="form-group" ref={config.ref}>
-        <label htmlFor={config.name} className="col-sm-2 control-label" ref={config.ref+'Label'}>
-          {config.label}
-        </label>
-        <div className="col-sm-10">
-        {this.renderField(config)}
-        </div>
-      </div>
-      );
+    return this.renderField(config);
   },
   renderField: function(config){
     var field;
@@ -70,26 +80,68 @@ var Field = React.createClass({
       case 'boolean':
         field = this.renderCheckbox(config);
         break;
+      case 'select':
+        field = this.renderMultiSelect(config);
+        break;
       default:
         field = this.renderTextInput(config);
     }
     return field;
   },
   renderTextInput: function(config){
-    //TODO: figure out a better way to handle the required attribute; can't figure out how to make the entire attribute dynamic with react
-
-    if (config.required) {
-      return <input ref={config.ref+'Input'} name={config.name} type="text" value={config.value} onChange={this.handleChange} required="required"/>
-    } else {
-      return <input ref={config.ref+'Input'} name={config.name} type="text" value={config.value} onChange={this.handleChange} />
-    }
+    return (
+      <Input
+      type="text"
+      value={config.value}
+      label={config.label}
+      ref={config.ref+'Input'}
+      groupClassName="form-group"
+      wrapperClassName="col-sm-6"
+      labelClassName="col-sm-2 control-label text-capitalize"
+      onChange={this.handleChange}
+      name={config.name}
+      required={config.required}
+      />
+    );
   },
   renderCheckbox: function(config){
-    if (config.required) {
-      return <input ref={config.ref+'Input'} name={config.name} type="checkbox" checked={config.checked} onChange={this.handleChange} required="required"/>
-    } else {
-      return <input ref={config.ref+'Input'} name={config.name} type="checkbox" checked={config.checked} onChange={this.handleChange} />
-    }
+    return (
+      <Input
+        type="checkbox"
+        checked={config.checked}
+        label={config.label}
+        ref={config.ref+'Input'}
+        groupClassName="form-group"
+        wrapperClassName="col-sm-6"
+        labelClassName="col-sm-2 control-label text-capitalize"
+        onChange={this.handleChange}
+        name={config.name}
+        required={config.required}
+       />
+      );
+  },
+  renderMultiSelect: function(config){
+    var optionsToRender = config.options.map(this.renderSelectOption);
+    return (
+      <Input
+        multiple
+        type="select"
+        defaultValue={config.value}
+        label={config.label}
+        ref={config.ref+'Input'}
+        groupClassName="form-group"
+        wrapperClassName="col-sm-6"
+        labelClassName="col-sm-2 control-label text-capitalize"
+        onChange={this.handleChange}
+        name={config.name}
+        required={config.required}
+      >
+        {optionsToRender}
+      </Input>
+    );
+  },
+  renderSelectOption: function(option){
+    return <option value={option} >{option}</option>;
   }
 
 });
