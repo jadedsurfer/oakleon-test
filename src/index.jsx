@@ -2,11 +2,13 @@
 
 /** @jsx React.DOM */
 (function(){
+  'use strict';
 
   var React = require('react/addons');
   //var App = require('./components/app.jsx');
   var Form = require('./components/form.jsx');
   var getType = require('./utils').getType;
+  var formatTime = require('./utils').formatTime;
   var Data = require('../data');
 
   function getConfig(){
@@ -30,16 +32,24 @@
       var fieldRequired = false;
 
       // Parse through the object to extract the needed properties
-      Object.keys(field).forEach(function(key){
-        if (key !== 'required') {
-          fieldName = key;
-          fieldValue = field[key];
-          fieldType = getType(fieldValue);
+      Object.keys(field).forEach(
+        function(key){
+          if (key !== 'required') {
+            fieldName = key;
+            fieldType = getType(field[key]);
+            if (fieldType === 'number' && field[key].toString().length === 13) {
+              fieldValue = formatTime(field[key]);
+            } else {
+              fieldValue = field[key];
+            }
+          }
+
+          if (key === 'required') {
+            fieldRequired = field[key];
+          }
+
         }
-        if (key === 'required') {
-          fieldRequired = field[key];
-        }
-      });
+      );
 
       // Add metadata to the original field
       field._name = fieldName;

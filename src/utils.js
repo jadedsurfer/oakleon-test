@@ -1,6 +1,8 @@
 // src/utils.js
 
 exports.getType = function(value){
+  'use strict';
+
   var type = 'text';
 
   switch (typeof value) {
@@ -9,7 +11,7 @@ exports.getType = function(value){
       break;
     case 'object':
       if (value === null){
-        type='text'
+        type='text';
       } else {
         type = 'object';
       }
@@ -33,4 +35,11 @@ exports.getType = function(value){
       type='text';
   }
   return type;
+};
+
+exports.formatTime = function(unixTimeInMilliseconds){
+  'use strict';
+
+  // TODO: handle the date conversion better; use moment.js
+  return new Date(unixTimeInMilliseconds);
 };
