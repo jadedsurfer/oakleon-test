@@ -17,20 +17,6 @@ var Field = React.createClass({
   },
   componentDidMount: function(){
     var field = this.props.config;
-
-//    var fieldName = '';
-//    var fieldValue = null;
-//    var fieldRequired = field.hasOwnProperty('required') ? field.required : false;
-//    var fieldType = 'text';
-//
-//    for (var key in field) {
-//      if (key !== 'required' && field.hasOwnProperty(key)) {
-//        fieldName = key;
-//        fieldValue = field[key];
-//        fieldType = this.getFieldType(fieldValue);
-//      }
-//
-//    }
     this.setState({
       type: field._type,
       name: field._name,
@@ -55,10 +41,7 @@ var Field = React.createClass({
     };
   },
   render: function() {
-
     var config = this.getConfig();
-
-//    <Field config={field} ref={fieldName} name={fieldName} label={fieldName} defaultValue={fieldValue} required={required}/>
 
     return (
       <div className="form-group" ref={config.ref}>

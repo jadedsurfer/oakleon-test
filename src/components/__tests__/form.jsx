@@ -12,13 +12,6 @@ describe('Form', function() {
     var config = {
       "id":"123",
       "fields":[
-        {
-          "_name": "firstname",
-          "_label": "firstname",
-          "_value": "Todd",
-          "_type": "text",
-          "_required": true
-        }
       ]
     };
     var form = TestUtils.renderIntoDocument(<Form config={config} />);
@@ -30,13 +23,6 @@ describe('Form', function() {
     var config = {
       "id":"123",
       "fields":[
-        {
-          "_name": "firstname",
-          "_label": "firstname",
-          "_value": "Todd",
-          "_type": "text",
-          "_required": true
-        }
       ]
     };
     var component = TestUtils.renderIntoDocument(<Form config={config} />);
@@ -51,13 +37,6 @@ describe('Form', function() {
     var config = {
       "id":"123",
       "fields":[
-        {
-          "_name": "firstname",
-          "_label": "firstname",
-          "_value": "Todd",
-          "_type": "text",
-          "_required": true
-        }
       ]
     };
     var component = TestUtils.renderIntoDocument(<Form config={config} />);
