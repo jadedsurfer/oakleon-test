@@ -6,6 +6,7 @@
   var React = require('react/addons');
   //var App = require('./components/app.jsx');
   var Form = require('./components/form.jsx');
+  var getType = require('./utils').getType;
   var Data = require('../data');
 
   function getConfig(){
@@ -33,7 +34,7 @@
         if (key !== 'required') {
           fieldName = key;
           fieldValue = field[key];
-          fieldType = getFieldType(fieldValue);
+          fieldType = getType(fieldValue);
         }
         if (key === 'required') {
           fieldRequired = field[key];
@@ -51,41 +52,6 @@
     });
 
     return cleanConfig;
-  }
-
-  function getFieldType(value){
-    var type = 'text';
-
-    switch (typeof value) {
-      case 'undefined':
-        type='text';
-        break;
-      case 'object':
-        if (value === null){
-          type='text'
-        } else {
-          type = 'object';
-        }
-        break;
-      case 'boolean':
-        type='boolean';
-        break;
-      case 'number':
-        type='number';
-        break;
-      case 'string':
-        type='text';
-        break;
-      case 'symbol':
-        type='error';
-        break;
-      case 'function':
-        type='error';
-        break;
-      default:
-        type='text';
-    }
-    return type;
   }
 
   function render(config){
