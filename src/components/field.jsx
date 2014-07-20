@@ -6,7 +6,7 @@ var Field = React.createClass({
 //      value: this.props.defaultValue,
       type: 'text',
       name: '',
-      ref: '',
+      ref: 'field',
       label: '',
       value: null
     };
@@ -15,7 +15,7 @@ var Field = React.createClass({
     this.setState({
       type: this.props.type,
       name: this.props.name,
-      ref: this.props.ref,
+      ref: this.props.ref || this.props.name,
       label: this.props.label,
       value: this.props.defaultValue
     });

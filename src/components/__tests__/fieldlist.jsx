@@ -53,33 +53,11 @@ describe('Form', function() {
       ]
     };
     var component = TestUtils.renderIntoDocument(<FieldList fields={Data.fields} />);
-    var field1 = component.refs.firstname.refs.firstnameInput.getDOMNode();
+    var field1 = component.refs.firstname;
     expect(field1).toBeDefined();
-    expect(field1.name).toBe('firstname');
-    expect(field1.value).toBe('Todd');
 
-    var field2 = component.refs.lastname.refs.lastnameInput.getDOMNode();
+    var field2 = component.refs.lastname;
     expect(field2).toBeDefined();
-    expect(field2.name).toBe('lastname');
-    expect(field2.value).toBe('Bashor');
   });
 
-  it('generates a label with the field', function(){
-    var Data = {
-      "id":"123",
-      "fields":[
-        {"firstname":"Todd", "required":true},
-        {"lastname":"Bashor"}
-      ]
-    };
-    var component = TestUtils.renderIntoDocument(<FieldList fields={Data.fields} />);
-
-    var field1 = component.refs.firstname.refs.firstnameLabel.getDOMNode();
-    expect(field1).toBeDefined();
-    expect(field1.textContent).toBe('firstname');
-
-    var field2 = component.refs.lastname.refs.lastnameLabel.getDOMNode();
-    expect(field2).toBeDefined();
-    expect(field2.textContent).toBe('lastname');
-  });
 });

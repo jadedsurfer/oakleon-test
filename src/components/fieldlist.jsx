@@ -15,13 +15,21 @@ var FieldList = React.createClass({
   render: function() {
     var fieldData = this.state.fields;
     var fieldsToRender = fieldData.map(function(field){
+
       var fieldName = '';
       var fieldValue = null;
+      var required = null;
+
       for (var key in field) {
         if (key !== 'required' && field.hasOwnProperty(key)) {
           fieldName = key;
           fieldValue = field[key];
         }
+
+        if (key === 'required' && field.hasOwnProperty(key)) {
+          required = field[key];
+        }
+
       }
       return (
         <Field ref={fieldName} name={fieldName} label={fieldName} defaultValue={fieldValue}/>

@@ -1,12 +1,5 @@
 describe('oaklen form', function(){
 
-  xit('generates a textbox for a field with a string value', function(){
-    expect(true).toEqual(true);
-  });
-
-  xit('sets the field as required if it has a required property', function(){
-    expect(true).toEqual(true);
-  });
 
   xit('converts date in human readable date', function(){
     expect(true).toEqual(true);
