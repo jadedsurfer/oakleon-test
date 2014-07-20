@@ -65,4 +65,18 @@ describe('Form', function() {
     expect(node.required).toBe('required');
   });
 
+  it('generates a checkbox field for booleans', function(){
+    var config = {
+      "_name": "admin",
+      "_label": "admin",
+      "_value": true,
+      "_type": "boolean",
+      "_required": false
+    };
+    var component = TestUtils.renderIntoDocument(<Field config={config}/>);
+
+    var node = component.refs.adminInput.getDOMNode();
+    expect(node.type).toBe('checkbox');
+  });
+
 });

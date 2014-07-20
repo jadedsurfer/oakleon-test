@@ -36,11 +36,21 @@ var App = {
     // Parse through the object to extract the needed properties
     Object.keys(field).forEach(
       function (key) {
+        // Key order is not always guaranteed so check what you got
         if (key !== 'required') {
           fieldName = key;
           fieldType = getType(field[key]);
           if (fieldType === 'date') {
             fieldValue = formatTime(field[key]);
+            /**
+            /* Using a date type field loses fidelity with the sample data given.
+            /*
+            /* More advanced logic could determine when to use a date type field
+            /* and when to use a regular text field.
+            /*
+            /* Also in this case the field should probably be readonly.
+            /*
+            **/
             fieldType = 'text';
           } else {
             fieldValue = field[key];

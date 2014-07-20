@@ -49,20 +49,42 @@ var Field = React.createClass({
           {config.label}
         </label>
         <div className="col-sm-10">
-        {this.renderTextInput(config)}
+        {this.renderField(config)}
         </div>
       </div>
       );
+  },
+  renderField: function(config){
+    var field;
+    switch (config.type){
+      case 'text':
+        field = this.renderTextInput(config);
+        break;
+      case 'boolean':
+        field = this.renderCheckbox(config);
+        break;
+      default:
+        field = this.renderTextInput(config);
+    }
+    return field;
   },
   renderTextInput: function(config){
     //TODO: figure out a better way to handle the required attribute; can't figure out how to make the entire attribute dynamic with react
 
     if (config.required) {
-      return <input ref={config.ref+'Input'} name={config.name} type={config.type} value={config.value} onChange={this.handleChange} required="required"/>
+      return <input ref={config.ref+'Input'} name={config.name} type="text" value={config.value} onChange={this.handleChange} required="required"/>
     } else {
-      return <input ref={config.ref+'Input'} name={config.name} type={config.type} value={config.value} onChange={this.handleChange} />
+      return <input ref={config.ref+'Input'} name={config.name} type="text" value={config.value} onChange={this.handleChange} />
+    }
+  },
+  renderCheckbox: function(config){
+    if (config.required) {
+      return <input ref={config.ref+'Input'} name={config.name} type="checkbox" value={config.value} onChange={this.handleChange} required="required"/>
+    } else {
+      return <input ref={config.ref+'Input'} name={config.name} type="checkbox" value={config.value} onChange={this.handleChange} />
     }
   }
+
 });
 
 module.exports = Field;
