@@ -33,14 +33,14 @@ The data format used to the generate the form is unusual for a number of reasons
 ### Assumptions
 
 To deal with this format, I made the following assumptions in the processing logic:
--"id" field should be hidden on the form but populated (since this is rarely needed by business users and would most likely be used in the url anyway)
--Duplicate fields, like tag and comments, should have the values combined to produce one field (this one is probably the most controversial and would require a better understanding of the use case/requirements; it also assumes that the REST API would parse those fields and separate the values)
--All other fields in the "fields" array should have some visible representation on the form (this could be tweaked with some additional logic in the future)
--The field object's first key as the field label should be used as the lable unless it is "required" (labeling could be configured by another object or an additional "_label" attribute in the future)
--"required" is a reserved word and should not be used as a field name (ideally this would be in a properties object like in json schema or at least have an _ in front of it for easier processing)
--Fields with numeric values and "date" in the key should have the value converted from Unix value (milliseconds from epoch) to a human readable date (REST api will convert date back into UNIX date for post and put)
--Any field that has an object as a value should be treated like a multi-select
--Fields with a boolean value should be converted into checkboxes.
+*"id" field should be hidden on the form but populated (since this is rarely needed by business users and would most likely be used in the url anyway)
+*Duplicate fields, like tag and comments, should have the values combined to produce one field (this one is probably the most controversial and would require a better understanding of the use case/requirements; it also assumes that the REST API would parse those fields and separate the values)
+*All other fields in the "fields" array should have some visible representation on the form (this could be tweaked with some additional logic in the future)
+*The field object's first key as the field label should be used as the lable unless it is "required" (labeling could be configured by another object or an additional "_label" attribute in the future)
+*"required" is a reserved word and should not be used as a field name (ideally this would be in a properties object like in json schema or at least have an _ in front of it for easier processing)
+*Fields with numeric values and "date" in the key should have the value converted from Unix value (milliseconds from epoch) to a human readable date (REST api will convert date back into UNIX date for post and put)
+*Any field that has an object as a value should be treated like a multi-select
+*Fields with a boolean value should be converted into checkboxes.
 
 ### Source files
 I'll go through the source files in the order they are used by the app.
@@ -68,6 +68,6 @@ Renders a field. There are subtle differences between multi-select boxes, checkb
 ## Future Directions
 There are plenty of ways this implementation could be enhanced. I aimed to do what I felt would be something workable I could present to a client for feedback. Next steps would be directed by a better understanding of the use cases and more access to sample data. The tests were mostly for structuring the work and sanity testing the changes. While they did help during the couple of significant refactorings I did, they would need to be augmented to really test the error handling.
 
-Hope you enjoy my first try to with react.js!
+Hope you enjoy my first try with react.js!
 
 
