@@ -140,7 +140,7 @@ var Field = React.createClass({
     );
   },
   renderSelectOption: function(option){
-    return <option value={option} >{option}</option>;
+    return <option key={option} value={option} >{option}</option>;
   },
   renderGrid: function(config){
     var optionsToRender = config.options.map(this.renderSelectOption);

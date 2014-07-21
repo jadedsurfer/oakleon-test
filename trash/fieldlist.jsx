@@ -2,7 +2,7 @@
 
 /** @jsx React.DOM */
 var React = require('react/addons');
-var Field = require('./field.jsx');
+var Field = require('./../src/components/field.jsx');
 var FieldList = React.createClass({
   getInitialState: function() {
     return {
