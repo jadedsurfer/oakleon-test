@@ -141,8 +141,27 @@ var Field = React.createClass({
   },
   renderSelectOption: function(option){
     return <option value={option} >{option}</option>;
+  },
+  renderGrid: function(config){
+    var optionsToRender = config.options.map(this.renderSelectOption);
+    return (
+      <Input
+      multiple
+      type="select"
+      defaultValue={config.value}
+      label={config.label}
+      ref={config.ref+'Input'}
+      groupClassName="form-group"
+      wrapperClassName="col-sm-6"
+      labelClassName="col-sm-2 control-label"
+      onChange={this.handleChange}
+      name={config.name}
+      required={config.required}
+      >
+        {optionsToRender}
+      </Input>
+      );
   }
-
 });
 
 module.exports = Field;
