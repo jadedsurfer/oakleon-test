@@ -8,7 +8,6 @@ Implement a dynamically generated input form using React [http://facebook.github
 ## To use
 
 ```
-npm install
 gulp
 node server.js
 ```
