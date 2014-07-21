@@ -7,3 +7,4 @@ dist/*
 browser-bundle.js
 npm-debug.log
 js/*
+trash/*
