@@ -21,6 +21,11 @@ module.exports = {
         type = 'text';
         break;
       case 'object':
+        if (Array.isArray(value)){
+          type = 'array';
+          break;
+        }
+
         if (value === null) {
           type = 'text';
         } else {
@@ -48,4 +53,4 @@ module.exports = {
     var date = new Date(unixTimeInMilliseconds);
     return date.toString();
   }
-}
+};

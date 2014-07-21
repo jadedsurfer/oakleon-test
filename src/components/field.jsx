@@ -3,7 +3,6 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
 var Input = require('react-bootstrap').Input;
-var Grid = require('react-grid');
 var Field = React.createClass({
   getInitialState: function() {
     return {
