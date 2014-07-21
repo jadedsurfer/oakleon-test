@@ -1,5 +1,6 @@
 // src/components/processor.js
 
+var inflection = require('inflection');
 var utils = require('./utils');
 var getType = utils.getType;
 var formatTime = utils.formatTime;
@@ -55,6 +56,8 @@ var processor = {
               fieldsWithNoDups[key]._value = [];
               // Assume that the dups represent a 1 to many relationship and should be shown as a list
               fieldsWithNoDups[key]._type = 'list';
+              // Try to make the label pural
+              fieldsWithNoDups[key]._label = inflection.pluralize(fieldsWithNoDups[key]._label);
               fieldsWithNoDups[key]._value.push(existingFieldValue);
               // This will adopt the type of the first field encountered
               fieldsWithNoDups[key]._value.push(originalValueForKey);
@@ -70,7 +73,7 @@ var processor = {
     var originalValueForKey = field[key];
     var tempField = {
       _name: key,
-      _label: key,
+      _label: inflection.titleize(key),
       _value: originalValueForKey,
       _type: null,
       _required: field.required || false,

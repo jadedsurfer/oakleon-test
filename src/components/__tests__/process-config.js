@@ -3,6 +3,7 @@
 /** @jsx React.DOM */
 jest.dontMock('../process-config.js');
 jest.dontMock('../utils.js');
+jest.dontMock('inflection');
 describe('App', function() {
   var processConfig = require('../process-config.js');
 
@@ -17,7 +18,7 @@ describe('App', function() {
     var field = cleanConfig.fields[0];
 
     expect(field._name).toBe('firstname');
-    expect(field._label).toBe('firstname');
+    expect(field._label).toBe('Firstname');
     expect(field._value).toBe('Todd');
     expect(field._type).toBe('text');
     expect(field._required).toBe(false);
