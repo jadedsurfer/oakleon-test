@@ -1,0 +1,40 @@
+{
+  "name": "react-chosen",
+  "version": "0.3.5",
+  "author": "chenglou <chenglou92@gmail.com>",
+  "description": "React wrapper for Chosen jQuery.",
+  "main": "react-chosen.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "test"
+  ],
+  "keywords": [
+    "facebook",
+    "react",
+    "chosen",
+    "harvest",
+    "select",
+    "dropdown",
+    "wrapper"
+  ],
+  "dependencies": {
+    "chosen": "~1.1.0",
+    "jquery": "~2.1.0",
+    "react": "~0.9.0"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/chenglou/react-chosen",
+  "_release": "0.3.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.5",
+    "commit": "115e2712f4640328d48db80a38b4d971f24835dc"
+  },
+  "_source": "git://github.com/chenglou/react-chosen.git",
+  "_target": "~0.3.5",
+  "_originalSource": "react-chosen",
+  "_direct": true
+}

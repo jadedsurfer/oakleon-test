@@ -1,4 +1,4 @@
-// src/components/app.js
+// src/components/app.jsx
 
 /** @jsx React.DOM */
 var React = require('react/addons');

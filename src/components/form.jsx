@@ -4,7 +4,7 @@
 var React = require('react/addons');
 var Button = require('react-bootstrap').Button;
 var Field = require('./field.jsx');
-//var FieldList = require('./fieldlist.jsx');
+
 var Form = React.createClass({
   getInitialState: function() {
     return {
@@ -38,26 +38,3 @@ var Form = React.createClass({
 });
 
 module.exports = Form;
-
-//var values = config.value;
-//var name = config.name;
-//var fieldsToRender = [];
-//
-//
-//
-//for (var i=0; i < values.length; i++){
-//  var newConfig = Object.create(config);
-//  newConfig.value = values[i];
-//  newConfig.name = name + '[' + i + ']';
-//  newConfig.key = name + '[' + i + ']';
-//  newConfig.onChange = null;
-//  if (i > 0){
-//    newConfig.label = ' ';
-//  }
-//  fieldsToRender.push(this.renderInput(newConfig));
-//}
-//return (
-//  <div>
-//      {fieldsToRender}
-//  </div>
-//  );
